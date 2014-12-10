@@ -15,5 +15,5 @@ int main()
     }
     if(p<0) pow = 1.0/pow;
     printf("x^p = %.3f",pow);
-    return 0;
+    return  0;
 }
