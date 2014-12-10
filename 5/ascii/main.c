@@ -4,7 +4,7 @@
 int main()
 {
     for(int i=0;i<128;i++){
-        printf("%2c %3d  ",i++);
+        printf("%2c %3d  ",i,i);
         if(i%16 == 15) {
             printf("\n");
         }
