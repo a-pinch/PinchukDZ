@@ -3,16 +3,31 @@
 
 int main()
 {
-    int n,x,y=0;
+    int n;
     printf("Input number: ");
     scanf("%d", &n);
-    x = n;
-    for(int i=0; i<n; i++){
-        for(int j=0; j<i+x; j++){
-            printf(" ");
+    int i;
+    for(i=0; i<n; i++){
+        for(int j=0; j<=n+i; j++){
+            if(j == n-i || j == n+i){
+                printf("#");
+            }else{
+                printf(" ");
+            }
         }
-        printf("#");
         printf("\n");
     }
+
+    for(i-=2; i>=0; i--){
+        for(int j=0; j<=n+i; j++){
+            if(j == n-i || j == n+i){
+                printf("#");
+            }else{
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
     return 0;
 }
