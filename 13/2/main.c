@@ -16,15 +16,9 @@ int main()
 
 double binpow(int a, int p){
     int res = 1;
-    if(p<0) {
-        return (double)1/binpow(a,-p);
-    }
+    if(p<0) return (double)1/binpow(a,-p);
     while(p){
-        if(p & 1){
-            res *= a;
-        }
-        a *= a;
-        p >>= 1;
+        if(p & 1) res *= a; a *= a; p >>= 1;
     }
     return res;
 }
