@@ -10,11 +10,7 @@ int main()
     scanf("%d",&a);
     printf("Input power:");
     scanf("%d",&p);
-    if(p<0){
-        printf("%d ^ %d = %.5f",a,p,binpow(a,p));
-    }else{
-        printf("%d ^ %d = %.0f",a,p,binpow(a,p));
-    }
+    printf("%d ^ %d = %.*f",a,p,p<0?5:0,binpow(a,p));
     return 0;
 }
 
