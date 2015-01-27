@@ -1,3 +1,5 @@
+static int rnd;
+
 int gcd(int a, int b){
     if(b == 0) return a;
     while(a%b != 0){
@@ -26,4 +28,44 @@ char *_10tor(int a, int r, char *buff){
         buff[i-d] = c;
     }
     return buff;
+}
+
+
+int myRandom(){
+    int a=4096, c=150889, m=714025;
+    rnd = (a * rnd + c) % m;
+    return rnd;
+}
+
+void initMyRandom(int start){
+    rnd = start;
+}
+
+int indexOfInt(int a, int *arr, int sz){
+    for(int i=0; i<sz; ++i){
+        if(a == arr[i]) return i;
+    }
+    return -1;
+}
+
+void displayArrayInt(int *arr, int sz){
+    for(int i=0; i<sz; ++i){
+        printf("%d ",arr[i]);
+    }
+}
+
+int maxInt(int *arr, int sz){
+    int m = arr;
+    for(int i=1; i<sz; ++i){
+        if(arr[i]>m) m = arr[i];
+    }
+    return m;
+}
+
+int minInt(int *arr, int sz){
+    int m = arr;
+    for(int i=1; i<sz; ++i){
+        if(arr[i]<m) m = arr[i];
+    }
+    return m;
 }
