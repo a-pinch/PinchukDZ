@@ -1,0 +1,47 @@
+0 +1009		read from concole to 9
+1 +2600		push A to stack (return value)		|  
+2 +2009		load from 9 to A			|  call function 
+3 +2600		push A to stak (param)			|  with return parameter 
+4 +4420		call 20					|  and one argument from 9
+5 +2700		pop to A                                   get result function
+6 +2110         save A to Bias + 10			   save result to 10
+7 +1110						           print result to concole
+8 +4300							   HALT
+9 +0000							// var sending to function
+10 +0000						// var with function result
+11 +0000
+12 +0000
+13 +0000
+14 +0000
+15 +0000
+16 +0000
+17 +0000
+18 +0000
+19 +0000
+20 +2400	load Bias to A				|\
+21 +2600	push A					|  start
+22 +2200	load Top to A				|  function
+23 +2500	save A to Bias				|/
+24 +2002	load from Bias+2 to A			get arg
+25 +4240	if(A == 0) goto 40			if(arg == 0) return;
+26 +3401	put Bias + 1 to A
+27 +2600	push A to stack				|\
+28 +2600	push A to stack				| 
+29 +2002	load from Bias+2 to A			|  call function
+30 -3101	substract Bias-1 from A			|  recurcively
+31 +2600	push A to stack				|  with 2 args
+32 +4420	call 20					|/
+33 +2700        pop to A				get result function
+34 +3302        multipli to Bias+2
+35 +2103	store A to Bias+3
+36 +2700	pop
+37 +2700	pop
+38 +2500	store A to Bias
+39 +4501	return with 1 param
+40 +3401	put to A Bias+1				
+41 +2103	save A to Bias+3
+42 +2700	pop in A				|\
+43 +2500	save A to Bias				|  return from function
+44 +4501	return (1 param)			|/
+45 -99999
+46 5
