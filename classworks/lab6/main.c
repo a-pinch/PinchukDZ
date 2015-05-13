@@ -4,6 +4,7 @@
 #include <sched.h>  //многопроцессорность
 #include <sys/types.h>
 #include <signal.h>
+#include <wait.h>
 
 #define TIME 5000
 
@@ -41,32 +42,50 @@ int main()
             fprintf(stderr, "Error, fork don't created!\n");
             return 1;
         }
-        else if(p1 == 0)
+        else if(p1 == 0)//внук
         {
-            //внук
-            pid_t p2 = getpid();
-            while(read_file)
-            {
-
-            }
-        }
-        else//обработка p1
-        {
+            //обработка сигнала
             struct sigaction act;
             sigemptyset(&act.sa_mask);
             act.sa_handler = &sig_handler;
             act.sa_flags = 0;
-
-            if (sigaction (SIGINT, &act, NULL) == -1)
+            if(sigaction (SIGQUIT, &act, NULL) == -1)
             {
                 fprintf (stderr, "sigaction() error\n");
                 return 1;
             }
+
+            FILE *file;
+            char symbol;
+            fopen("test.txt", "r");
+
+            while(read_file && !feof(file))
+            {
+                symbol = fgetc(file);
+                write(pf[0], &symbol, sizeof(char));
+            }
+            symbol = '\0';
+            write(pf[0], &symbol, sizeof(char));
+
+
+            fclose(file);
+            close(pf[0]);        }
+        else//обработка p1
+        {
+            sleep(TIME);
+            kill(p1, SIGQUIT);
         }
     }
     else
     {
+        wait(NULL);
+        char symbol;
 
+        do
+        {
+            read(pf[1], &symbol, sizeof(char));
+            printf("%c", symbol);
+        }while(symbol != '\0');
     }
 
 
