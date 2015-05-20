@@ -13,8 +13,8 @@ public:
 
 	void print() const;
 
-	const char* String::c_str() {
-		return (const char *)s;
+	const char* String::c_str() const {
+		return s;
 	}
 	
 	void operator=(const String& orig);
@@ -23,10 +23,12 @@ public:
 	const char* add(const char *str);	
 
 	void upper();
-	String first(int n);
-	String last(int n);
-	String substr(int i, int n);
-	String trim();
+	
+	String first(int n) const;
+	String last(int n) const;
+	
+	String substr(int i, int n) const;
+	String trim() const;
 
 	~String();
 };
@@ -37,4 +39,4 @@ inline int sqr(int x){
 	return x*x;
 }
 
-String concat(String first, String second);
+String concat(const String& first, const String& second);

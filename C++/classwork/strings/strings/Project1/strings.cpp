@@ -63,7 +63,7 @@ void String::operator=(const String& orig){
 	strcpy(s, orig.s);
 }
 
-String concat(String first, String second){
+String concat(const String& first, const String& second){
 	String res = first;
 	return res.add(second.c_str());
 }
@@ -76,46 +76,46 @@ void String::upper(){
 	}
 }
 
-String String::first(int n){
+String String::first(int n) const{
 	if (n>length) {
 		n = length;
 	}
-	char* res = (char *)malloc((n + 1) * sizeof(char));
-	for (int i = 0; i < n; ++i){
-		res[i] = s[i];
-	}
-	res[n] = '\0';
-	return String(res);
+	String res;
+	free(res.s);
+	res.s = (char *)malloc((n + 1) * sizeof(char));
+	memmove(res.s, s, n);
+	res.s[n] = '\0';
+	return res;
 }
 
-String String::last(int n){
+String String::last(int n) const{
 	if (n>length) {
 		n = length;
 	}
-	char* res = (char *)malloc((n + 1) * sizeof(char));
-	for (int i = length-n, j=0; i < length; ++i, ++j){
-		res[j] = s[i];
-	}
-	res[n] = '\0';
-	return String(res);
+	String res;
+	free(res.s);
+	res.s = (char *)malloc((n + 1) * sizeof(char));
+	memmove(res.s, s + length - n, n);
+	res.s[n] = '\0';
+	return res;
 }
 
-String String::substr(int i, int n){
+String String::substr(int i, int n) const{
 	if (i+n>length) {
 		n = length - i;
 	}
 	if (n < 0){
 		return nullptr;
 	}
-	char* res = (char *)malloc((n + 1) * sizeof(char));
-	for (int j = i, k=0; j < i+n; ++j, ++k){
-		res[k] = s[j];
-	}
-	res[n] = '\0';
-	return String(res);
+	String res;
+	free(res.s);
+	res.s = (char *)malloc((n + 1) * sizeof(char));
+	memmove(res.s, s + i, n);
+	res.s[n] = '\0';
+	return res;
 }
 
-String String::trim(){
+String String::trim() const{
 	int first = 0, last = length;
 	int i = 0;
 	while (s[i++] == ' '){
@@ -125,10 +125,10 @@ String String::trim(){
 	while (s[i--] == ' '){
 		last--;
 	}
-	char* res = (char *)malloc((last - first + 1) * sizeof(char));
-	for (int i = first, j=0; i < last+1; i++, j++){
-		res[j] = s[i];
-	}
-	res[last - first] = '\0';
-	return String(res);
+	String res;
+	free(res.s);
+	res.s = (char *)malloc((last - first + 1) * sizeof(char));
+	memmove(res.s, s + first, last - first);
+	res.s[last - first] = '\0';
+	return res;
 }
