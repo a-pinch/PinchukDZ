@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 	String a = "Hello ", b = "world!";
-	String c = concat(a, b);
+	String c = a.concat(b);
 
 	a.print();
 	b.print();
@@ -27,6 +27,8 @@ int main() {
 	String g = "   trim  ";
 	g.print();
 	g.trim().print();
+
+	(a + b).print();
 
 	getc(stdin);
 

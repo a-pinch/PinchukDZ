@@ -23,12 +23,16 @@ public:
 	const char* add(const char *str);	
 
 	void upper();
-	
+
+	String concat(const String& what);
 	String first(int n) const;
 	String last(int n) const;
 	
 	String substr(int i, int n) const;
 	String trim() const;
+
+	String& operator+=(const String& what);
+	String operator+(const String& what);
 
 	~String();
 };
@@ -38,5 +42,3 @@ void print(String str);
 inline int sqr(int x){
 	return x*x;
 }
-
-String concat(const String& first, const String& second);

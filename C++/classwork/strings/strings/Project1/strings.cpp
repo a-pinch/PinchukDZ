@@ -63,9 +63,10 @@ void String::operator=(const String& orig){
 	strcpy(s, orig.s);
 }
 
-String concat(const String& first, const String& second){
-	String res = first;
-	return res.add(second.c_str());
+String String::concat(const String& what) {
+	String res(*this);
+	return res.add(what.c_str());
+
 }
 
 void String::upper(){
@@ -130,5 +131,19 @@ String String::trim() const{
 	res.s = (char *)malloc((last - first + 1) * sizeof(char));
 	memmove(res.s, s + first, last - first);
 	res.s[last - first] = '\0';
+	return res;
+}
+
+String& String::operator+=(const String& what){
+	length += strlen(what.c_str());
+	s = (char *)realloc((void *)s, (length + 1) * sizeof(char));
+	if (!s) return String();
+	strcat(s, what.c_str());
+	return *this;
+}
+
+String String::operator+(const String& what){
+	String res(*this);
+	res += what;
 	return res;
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 *.exe
 *.obj
@@ -12,3 +13,33 @@
 bin/
 obj/
 Debug/
+=======
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+>>>>>>> ed6b86d08b4457eb900de1ba6d2913b13554c6d3
