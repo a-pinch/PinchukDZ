@@ -8,7 +8,9 @@ public:
 
 	Fraction();
 	Fraction(int n);
+	Fraction(double n);
 	Fraction(int n, unsigned int d);
+
 	~Fraction();
 
 	void print() const;
