@@ -24,7 +24,7 @@ public:
 
 	void upper();
 
-	String concat(const String& what);
+	String concat(const String& what) const;
 	String first(int n) const;
 	String last(int n) const;
 	
@@ -42,3 +42,5 @@ void print(String str);
 inline int sqr(int x){
 	return x*x;
 }
+
+//String operator+(const String& first, const String& second);

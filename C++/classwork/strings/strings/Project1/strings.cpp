@@ -63,7 +63,7 @@ void String::operator=(const String& orig){
 	strcpy(s, orig.s);
 }
 
-String String::concat(const String& what) {
+String String::concat(const String& what) const{
 	String res(*this);
 	return res.add(what.c_str());
 
@@ -143,7 +143,16 @@ String& String::operator+=(const String& what){
 }
 
 String String::operator+(const String& what){
+//	printf("method \n");
 	String res(*this);
 	res += what;
 	return res;
 }
+/*
+String operator+(const String& first, const String& second){
+	printf("function ");
+	String res(first);
+	res += second;
+	return res;
+}
+*/
