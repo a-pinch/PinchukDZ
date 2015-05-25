@@ -2,7 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include "Fraction.h"
-#include "../../../modules/includes/mymath.h"
+#include "mymath.h"
 
 Fraction::Fraction()
 {
@@ -25,25 +25,29 @@ Fraction::~Fraction()
 }
 
 void Fraction::print() const{
+	print(cout);
+}
+
+void Fraction::print(ostream& s) const{
 	if (d != 0){
 		if (d == 1){
-			std::cout << n << std::endl;
-		}else if (n / d > 0){
-			if (n%d == 0){
-				std::cout << n / d << std::endl;
+			s << n << endl;
+		}else if (n / (int)d != 0){
+			if (n%(int)d == 0){
+				s << abs(n) / (int)d << endl;
 			}else{
-				std::cout << n / d << ' ' << n%d << "/" << d << std::endl;
+				s << n / (int)d << ' ' << abs(n)%(int)d << "/" << d << endl;
 			}
 		}else{
-			std::cout << n << "/" << d << std::endl;
+			s << n << "/" << d << endl;
 		}
 	}else{
 		if (n == 0){
-			std::cout << "NaN" << std::endl;
+			s << "NaN" << endl;
 		}else if (n < 0){
-			std::cout << "-oo" << std::endl;
+			s << "-oo" << endl;
 		}else{
-			std::cout << "+oo" << std::endl;
+			s << "+oo" << endl;
 		}
 	}
 }
@@ -158,4 +162,9 @@ void Fraction::cancel(){
 		n /= cd;
 		d /= cd;
 	}
+}
+
+ostream& operator << (ostream& s, const Fraction& f){
+	f.print();
+	return s;
 }

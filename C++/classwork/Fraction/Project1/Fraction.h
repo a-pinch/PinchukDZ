@@ -1,5 +1,10 @@
 #pragma once
 
+#include <ostream>
+
+
+using namespace std;
+
 class Fraction
 {
 public:
@@ -14,6 +19,7 @@ public:
 	~Fraction();
 
 	void print() const;
+	void print(ostream& s) const;
 
 	Fraction& operator *= (const Fraction &f);
 	Fraction& operator /= (const Fraction &f);
@@ -61,3 +67,6 @@ private:
 
 };
 
+
+
+ostream& operator<< (ostream& s, const Fraction& f);
