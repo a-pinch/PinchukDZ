@@ -18,6 +18,10 @@ private:
 	static int junk;
 
 public:
+	size_t getSize(){
+		return size;
+	}
+
 	List& push_front(int data);
 	List& pop_front();
 	int& operator[](size_t index);
