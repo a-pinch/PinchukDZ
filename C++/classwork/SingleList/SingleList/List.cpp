@@ -8,6 +8,9 @@ int List::junk;
 
 List& List::push_front(int data){
 	Node *node = new Node;
+	if (node == nullptr){
+		throw 3;	// can't create node
+	}
 	node->data = data;
 	node->next = first;
 	first = node;
@@ -16,25 +19,30 @@ List& List::push_front(int data){
 }
 
 List& List::pop_front(){
-	if (first != nullptr){
-		Node *tmp = first;
-		first = first->next;
-		delete tmp;
-		--size;
+	if (first == nullptr){
+		throw 1;    //empty stack
 	}
+
+	Node *tmp = first;
+	first = first->next;
+	delete tmp;
+	--size;
+	
 	return *this;
 }
 
 int& List::operator[](size_t index){
-	if (index < size){
-		Node *tmp = first;
-		for (size_t i = 0; i<index; i++){
-			tmp = tmp->next;
-		}
-		return tmp->data;
+	if (index >= size){
+		throw 2;    // index out of bouds
+	//	cout << "ERROR";
+	//	return junk;
 	}
-	cout << "ERROR";
-	return junk;
+
+	Node *tmp = first;
+	for (size_t i = 0; i<index; i++){
+		tmp = tmp->next;
+	}
+	return tmp->data;
 }
 
 List::~List(){
