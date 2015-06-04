@@ -35,4 +35,8 @@ public:
 		}
 
 	}
+
+	int size(){
+		return pairs.size();
+	}
 };

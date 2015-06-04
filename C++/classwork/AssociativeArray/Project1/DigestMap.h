@@ -34,10 +34,20 @@ public:
 	void show(){
 		for (int i = 0; i < NN; i++){
 			if (table[i] != nullptr){
-				cout << "cell " << i << ": ";
+				cout << "cell " << i << " colisions(" << ((table[i])->size() - 1) << "): ";
 				(table[i])->show();
 			}
 		}
+	}
+
+	int colisions(){
+		int c = 0;
+		for (int i = 0; i < NN; i++){
+			if (table[i] != nullptr){
+				c += (table[i])->size() - 1;
+			}
+		}
+		return c;
 	}
 
 };
