@@ -10,9 +10,15 @@ public:
 
 int main(){
 	DigestMap<string, float> people;
-	people["Anna"] = 1.7f;
-	people["Alex"] = 2.7f;
-	people["Boreau"] = 0.1f;
+	char buffer[50];
+	for (int i = 0; i < 10; i++){
+		sprintf_s(buffer, "%s%d", "Anna",i);
+		people[buffer] = 1.7f;
+		sprintf_s(buffer, "%s%d", "Alex", i);
+		people[buffer] = 2.7f;
+		sprintf_s(buffer, "%s%d", "Boreau", i);
+		people[buffer] = 0.1f;
+	}
 
 	people.show();
 

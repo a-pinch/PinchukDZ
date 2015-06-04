@@ -2,25 +2,21 @@
 #include <stdlib.h>
 #include <string>
 
+unsigned long digest(string key);
+unsigned long digest(int key);
+
+
 template<class Tkey, class Tvalue> class DigestMap{
 private:
 	int NN, N;
 	UnorderedMap<Tkey,Tvalue> **table;
 
-	unsigned int digest(string key){
-		unsigned int dig = 0;
-		for (size_t i = 0; i < key.length(); i++){
-			dig += key[i];
-		}
-		return dig;
-	}
-
 public:
-	DigestMap() :  DigestMap(N) {};
-	DigestMap(int capacity) : N(capacity), NN(3 * NN){
+	DigestMap() :  DigestMap(100) {};
+	DigestMap(int capacity) : N(capacity), NN(3 * capacity){
 		table = new UnorderedMap<Tkey,Tvalue>* [NN];
 		for (int i = 0; i < NN; i++){
-			table[i] = new UnorderedMap<Tkey, Tvalue>();
+			table[i] = nullptr;
 		}
 	};
 	~DigestMap(){
@@ -28,14 +24,19 @@ public:
 	};
 
 	Tvalue& operator[](const Tkey& key) {
-		int dig = digest(key);
-		////
+		unsigned long dig = digest(key);
+		if (table[dig % NN] == nullptr){
+			table[dig % NN] = new UnorderedMap<Tkey, Tvalue>();
+		}
 		return (*(table[dig % NN]))[key];
 	}
 
 	void show(){
 		for (int i = 0; i < NN; i++){
-			(table[i])->show();
+			if (table[i] != nullptr){
+				cout << "cell " << i << ": ";
+				(table[i])->show();
+			}
 		}
 	}
 

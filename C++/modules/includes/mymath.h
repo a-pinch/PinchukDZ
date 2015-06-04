@@ -1,7 +1,7 @@
-#ifndef MYMATH_H_INCLUDED
-#define MYMATH_H_INCLUDED
+#pragma once;
 
 int gcd(int a, int b);
 int lcm(int a, int b);
 
-#endif // MYMATH_H_INCLUDED
+unsigned int digest(string key);
+unsigned int digest(int key);
