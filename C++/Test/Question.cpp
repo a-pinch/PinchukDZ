@@ -3,6 +3,9 @@
 #include <sstream>
 #include "Question.h"
 
+std::vector<Question> Question::questions;
+
+
 void Question::init(std::string fileName)
 {
 	std::string buffer, temp;

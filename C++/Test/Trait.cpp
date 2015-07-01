@@ -29,7 +29,6 @@ void Trait::init(std::string filename){
 }
 
 void Trait::parse(std::string buf){
-	char c;
 	std::string str;
 	bool f = false;
 	for (size_t i = 0; i < buf.length(); i++){

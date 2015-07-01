@@ -5,7 +5,7 @@
 class Question
 {
 private:	
-	static std::vector<Question> Question::questions;
+	static std::vector<Question> questions;
 public:
 	std::string text;
 	std::vector<Answer> answers;
